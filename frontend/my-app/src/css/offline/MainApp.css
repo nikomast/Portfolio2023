@@ -1,0 +1,166 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 80%;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.loan-entry {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 3px;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1; 
+  max-width: 100%; 
+  margin: 5px;
+}
+
+.loan-entry input {
+  flex: 1;
+  margin: 3px;
+  padding: 10px 1px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  flex: 1;
+  max-width: 100%;
+}
+
+.Payment-Text {
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.budget-input {
+  border: 2px solid #0077b6; 
+  border-radius: 5px;        
+  padding: 4px 8px;       
+  font-size: 14;          
+  margin-left: 10px;          
+  transition: border-color 0.3s ease; 
+}
+
+.budget-input:hover {
+  border-color: #00b4d8;     /* Slightly lighter blue when hovered */
+}
+
+button {
+  padding: 6px 4px;
+  border: none;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 4px;
+  transition: background-color 0.3s ease;
+  font-family: 'Arial', sans-serif;
+}
+
+.Navigate {
+padding: 6px 4px;
+border: none;
+font-family: 'Arial', sans-serif;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.frame {
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.frame img {
+  max-width: 100%; 
+  max-height: 100vh; 
+  object-fit: contain; 
+  display: block; 
+  margin: 0 auto; 
+}
+
+
+@media (max-width: 800px) {
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 5px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 80%;
+  }
+
+  .center-text {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .Payment-Text {
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+    font-size: 10px;
+  }
+
+  .budget-input {
+    border: 1px solid #0077b6; 
+    border-radius: 5px;
+    height: 15px;        
+    padding: 1px 2px;       
+    font-size: 5;          
+    margin-left: 1px;          
+    transition: border-color 0.3s ease; 
+  }
+  
+  .loan-entry input {
+    flex: 1;
+    margin: 1px;
+    padding: 1px 1px;
+    border: 1px solid #ddd;
+    border-radius: 1px;
+    flex: 1; 
+    max-width: 15%;
+    font-size: 10px;
+  }
+  button {
+    padding: 2px 3px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 2px;
+    transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    font-size: 10px;
+  }
+.Navigate{
+padding: 2px 3px;
+font-size: 10px;
+}
+}

@@ -16,7 +16,8 @@ function App() {
       y: 200,
       height: 40,
       width: 10,
-      speed: 0 // initially stationary
+      speed: -5,
+      defaultSpeed: -5
     },
   });
   const [score, setScore] = useState(0);
@@ -84,52 +85,49 @@ function App() {
 };
 
 
+useEffect(() => {
+  const handleInputStart = (e) => {
+      // Only act if game is running
+      if (!isGameRunning) return;
+      
+      e.preventDefault();
+      // Reverse speed
+      setGameState(prev => ({
+          ...prev,
+          leftPaddle: { ...prev.leftPaddle, speed: -prev.leftPaddle.speed }
+      }));
+  };
 
+  const handleInputEnd = (e) => {
+      // Only act if game is running
+      if (!isGameRunning) return;
+
+      e.preventDefault();
+      // Revert to default speed
+      setGameState(prev => ({
+          ...prev,
+          leftPaddle: { ...prev.leftPaddle, speed: prev.leftPaddle.defaultSpeed }
+      }));
+  };
+
+  // Mouse Events
+  window.addEventListener("mousedown", handleInputStart);
+  window.addEventListener("mouseup", handleInputEnd);
   
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      switch (e.key) {
-        case "ArrowUp":
-          console.log("Up")
-          setGameState(prev => ({
-            ...prev,
-            leftPaddle: { ...prev.leftPaddle, speed: -5 }
-          }));
-          break;
-        case "ArrowDown":
-          console.log("Not Up")
-          setGameState(prev => ({
-            ...prev,
-            leftPaddle: { ...prev.leftPaddle, speed: 5 }
-          }));
-          break;
-        default:
-          break;
-      }
-    };
+  // Touch Events
+  window.addEventListener("touchstart", handleInputStart);
+  window.addEventListener("touchend", handleInputEnd);
 
-    const handleKeyUp = (e) => {
-      switch (e.key) {
-        case "ArrowUp":
-        case "ArrowDown":
-          setGameState(prev => ({
-            ...prev,
-            leftPaddle: { ...prev.leftPaddle, speed: 0 }
-          }));
-          break;
-        default:
-          break;
-      }
-    };
+  // Cleanup to avoid multiple event listeners
+  return () => {
+      window.removeEventListener("mousedown", handleInputStart);
+      window.removeEventListener("mouseup", handleInputEnd);
+      window.removeEventListener("touchstart", handleInputStart);
+      window.removeEventListener("touchend", handleInputEnd);
+  };
+}, [isGameRunning]); // Note: Added isGameRunning to dependency array
 
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-}, []);
 
 
  /* useEffect(() => {
@@ -181,7 +179,8 @@ const resetGame = () => {
       y: 200,
       height: 40,
       width: 10,
-      speed: 0 // initially stationary
+      speed: -5,
+      defaultSpeed: -5
     },
     score: 0.
   });
@@ -191,24 +190,34 @@ const resetGame = () => {
 
 return (
   <div className="App">
-          <div className="rotate-message">
-          Please flip your device to landscape mode to play the game.
-          </div>
       <div className="canvas-container">
           {!isGameRunning && <button className='restart' onClick={resetGame}>Restart Game</button>}
           <canvas ref={canvasRef} width={600} height={300}></canvas>
+          <div className='game-info'>
           <div className='score'>Score: {score}</div>
           <div className="pong-instructions">
               <h2>How to Play</h2>
-              <p>Use the arrow keys to move the paddle:</p>
-              <ul>
-              <li><strong>Arrow Up:</strong> Move paddle up</li>
-              <li><strong>Arrow Down:</strong> Move paddle down</li>
-              </ul>
+              <p>Press the left mouse button</p>
+              <p>Or</p>
+              <p>On a mobile device press the screen</p>
           </div>
+      </div>
+      </div>
+      <div className="rotate-message">
+          Please rotate your screen for the best experience.
       </div>
   </div>
 );
 }
 
 export default App;
+
+/*<div className='game-info'>
+      <div className='score'>Score: {score}</div>
+      <div className="pong-instructions">
+              <h2>How to Play</h2>
+              <p>Press the left mouse button</p>
+              <p>Or</p>
+              <p>On a mobile device press the screen</p>
+          </div>
+      </div>*/
